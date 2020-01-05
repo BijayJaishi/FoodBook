@@ -96,7 +96,14 @@ class _DashBoardState extends State<DashBoard>
         children: <Widget>[
 //          todaysday(context),
 //          menu(context),
-          CarouselDemo(),
+
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 60,
+            child: CarouselDemo(),
+          ),
           Positioned(
             left: 0,
             right: 0,

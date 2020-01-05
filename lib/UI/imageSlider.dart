@@ -34,16 +34,19 @@ class CarouselDemoState extends State<CarouselDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Wrap(
-          children: <Widget>[
-            new Column(
+    return Container(
+//        color: Colors.redAccent,
+        child: new Stack(
 //            mainAxisSize: MainAxisSize.max,
-//            mainAxisAlignment: MainAxisAlignment.center,
+//            mainAxisAlignment: MainAxisAlignment.spaceAround,
 //            crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Row(
+          children: <Widget>[
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+
+                  child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Padding(
@@ -59,7 +62,7 @@ class CarouselDemoState extends State<CarouselDemo> {
 //                      padding: EdgeInsets.all(10.0),
                         child: Text('Stories',
                             style:
-                                TextStyle(fontSize: 15.0, color: Colors.white)),
+                            TextStyle(fontSize: 15.0, color: Colors.white)),
                       ),
                     ),
 
@@ -76,10 +79,10 @@ class CarouselDemoState extends State<CarouselDemo> {
 //                      padding: EdgeInsets.all(10.0),
                         child: Text('Recommended',
                             style:
-                                TextStyle(fontSize: 15.0, color: Colors.black)),
+                            TextStyle(fontSize: 15.0, color: Colors.black)),
                       ),
                     ),
-
+//
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Container(
@@ -120,130 +123,118 @@ class CarouselDemoState extends State<CarouselDemo> {
 //                  ),
                   ],
                 ),
+            ),
 
-                carouselSlider = CarouselSlider(
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  initialPage: 0,
-                  enlargeCenterPage: true,
-                  autoPlay: false,
-                  reverse: false,
-                  enableInfiniteScroll: true,
-                  autoPlayInterval: Duration(seconds: 2),
-                  autoPlayAnimationDuration: Duration(milliseconds: 2000),
-                  pauseAutoPlayOnTouch: Duration(seconds: 7),
-                  scrollDirection: Axis.horizontal,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
-                  items: imgList.map((imgUrl) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          margin: EdgeInsets.all(15.0),
-                          decoration: BoxDecoration(
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 52,
+                  bottom: 52,
+                  child: CarouselSlider(
+                    height: 550,
+                    initialPage: 0,
+                    enlargeCenterPage: true,
+                    autoPlay: true,
+                    reverse: false,
+
+                    enableInfiniteScroll: true,
+                    autoPlayInterval: Duration(seconds: 2),
+                    autoPlayAnimationDuration: Duration(milliseconds: 2000),
+                    pauseAutoPlayOnTouch: Duration(seconds: 7),
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _current = index;
+                      });
+                    },
+                    items: imgList.map((imgUrl) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            margin: EdgeInsets.all(15.0),
+                            decoration: BoxDecoration(
 //                              border: Border.all(width : 10.0,color: Colors.transparent),
-                              borderRadius: BorderRadius.circular(35.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromARGB(80, 0, 0, 0),
-                                    blurRadius: 5.0,
-                                    offset: Offset(5.0, 5.0))
-                              ],
-                              image: DecorationImage(
-                                  fit: BoxFit.cover, image: imgUrl)),
-                          width: MediaQuery.of(context).size.width,
-                          child: Container(
+                                borderRadius: BorderRadius.circular(25.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromARGB(80, 0, 0, 0),
+                                      blurRadius: 5.0,
+                                      offset: Offset(5.0, 5.0))
+                                ],
+                                image: DecorationImage(
+                                    fit: BoxFit.cover, image: imgUrl)),
+                            width: MediaQuery.of(context).size.width,
+                            child: Container(
                               margin: EdgeInsets.only(bottom: 10.0,right: 20.0),
                               alignment: Alignment.bottomRight,
                               child :Icon(Icons.favorite,color: Colors.redAccent,),
                             ),
-
-
-//                          child: new Text('Title',
-//                              style: new TextStyle(
-//                                fontWeight: FontWeight.bold,
-//                                color: Colors.red,
-//                                fontSize: 20.0,
-//                              )
-//                          ),
-//                        margin: EdgeInsets.symmetric(horizontal: 10.0),
-//                        decoration: BoxDecoration(
-////                          color: Colors.green,
-//                        ),
-//                        child: Image(
-//                          height: double.infinity,
-//                          width: double.infinity,
-//                          fit: BoxFit.cover,
-//                          image : imgUrl
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),),
 //
-////                          Image.asset(
-////                            imgUrl,
-////                            fit: BoxFit.fill,
-////                          ),
-//                        )
-                        );
-//                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-              Center(
-                child : Container(
-                  margin: EdgeInsets.only(top: 7),
-                  child : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.only(right: 10.0),
-                          height: 43,
-                          width: 43,
-                          //margin: EdgeInsets.only(left:100.0),
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 2.0, color: Colors.green),
-                            borderRadius: BorderRadius.circular(35.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(60, 0, 0, 0),
-                                  blurRadius: 3.0,
-                                  offset: Offset(3.0, 3.0))
-                            ],
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/images/burger.jpg')),
-                          ),
-                        ),
-                      ),
-                      new Column(
-                        children: <Widget>[
-                          new Text(
-                            "HalfWaiter Restaurant",
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold
-                            ),
-                            textDirection: TextDirection.ltr,
-                          ),
-                          new Text("$post Posts  |  $followers Followers",style: TextStyle(
-                            fontSize: 14.0,
-                          )),
-                        ],
-                      ),
+               Positioned(
+                   left: 0,
+                   right: 0,
+                   bottom: 7,
+                   child: Center(
+                 child : Container(
+//                  margin: EdgeInsets.only(top: 7),
+                   child : Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: <Widget>[
+                       Center(
+                         child: Container(
+                           alignment: Alignment.center,
+                           margin: EdgeInsets.only(right: 10.0),
+                           height: 43,
+                           width: 43,
+                           //margin: EdgeInsets.only(left:100.0),
+                           decoration: BoxDecoration(
+                             border: Border.all(width: 2.0, color: Colors.green),
+                             borderRadius: BorderRadius.circular(35.0),
+                             boxShadow: [
+                               BoxShadow(
+                                   color: Color.fromARGB(60, 0, 0, 0),
+                                   blurRadius: 3.0,
+                                   offset: Offset(3.0, 3.0))
+                             ],
+                             image: DecorationImage(
+                                 fit: BoxFit.cover,
+                                 image: AssetImage('assets/images/burger.jpg')),
+                           ),
+                         ),
+                       ),
+                       new Column(
+                         children: <Widget>[
+                           new Text(
+                             "Halfwaiter Restaurant",
+                             style: TextStyle(
+                                 fontSize: 16.0,
+                                 fontWeight: FontWeight.bold,
+                                 fontFamily: "Roboto-Regular"
+                             ),
+                             textDirection: TextDirection.ltr,
+                           ),
+                           new Text("$post Posts  |  $followers Followers",style: TextStyle(
+                             fontSize: 14.0,
+                           )),
+                         ],
+                       ),
 
-                    ],
-                  ),
-                ),
+                     ],
+                   ),
+                 ),
+//
+               ))
+//
 
-              )
 
-              ],
-            ),
           ],
         ),
-      ),
+
     );
   }
 
