@@ -47,8 +47,7 @@ class _DashBoardState extends State<DashBoard>
     screenWidth = size.width;
     screenHeight = size.height;
     return Scaffold(
-      appBar:
-      AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -56,10 +55,8 @@ class _DashBoardState extends State<DashBoard>
         title: Text(
           "FoodBook",
           style: TextStyle(
-            //fontFamily:
-              color: Colors.black
-
-          ),
+              //fontFamily:
+              color: Colors.black),
           textAlign: TextAlign.left,
         ),
         actions: <Widget>[
@@ -68,7 +65,7 @@ class _DashBoardState extends State<DashBoard>
               child: Container(
                   margin: EdgeInsets.all(9.0),
                   decoration: BoxDecoration(
-                      border: Border.all(width : 2.0,color: Colors.green),
+                      border: Border.all(width: 2.0, color: Colors.green),
                       borderRadius: BorderRadius.circular(35.0),
                       boxShadow: [
                         BoxShadow(
@@ -78,8 +75,11 @@ class _DashBoardState extends State<DashBoard>
                       ],
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image:
-                          AssetImage('assets/images/burger.jpg'))))),
+                          image: AssetImage('assets/images/burger.jpg')
+                      ),
+                  ),
+              ),
+          ),
 
 //          IconButton(
 //            icon: Icon(
@@ -91,11 +91,7 @@ class _DashBoardState extends State<DashBoard>
 //            },
 //          ),
         ],
-
       ),
-
-
-
       body: Stack(
         children: <Widget>[
 //          todaysday(context),
@@ -114,19 +110,18 @@ class _DashBoardState extends State<DashBoard>
 
   Widget get bottomNavigationBar {
     return Container(
-
         decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-        topRight: Radius.circular(40), topLeft: Radius.circular(40)),
-    boxShadow: [
-    BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 10),
-    ],
-    ),
-    child: ClipRRect(
-    borderRadius: BorderRadius.only(
-    topLeft: Radius.circular(40.0),
-    topRight: Radius.circular(40.0),
-    ),
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(40), topLeft: Radius.circular(40)),
+          boxShadow: [
+            BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40.0),
+            topRight: Radius.circular(40.0),
+          ),
 
 //      Card(
 //      clipBehavior: Clip.antiAlias,
@@ -140,30 +135,29 @@ class _DashBoardState extends State<DashBoard>
 //        ),
 //      ),
 
-      child: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        index: 0,
-        height: 55.0,
-        items: <Widget>[
-          Icon(Icons.notifications_active, size: 30),
-          Icon(Icons.list, size: 30),
-          Icon(Icons.compare_arrows, size: 30),
-          Icon(Icons.call_split, size: 30),
-          Icon(Icons.perm_identity, size: 30),
-        ],
-        color: Colors.white,
-        buttonBackgroundColor: Colors.amber,
-        backgroundColor: Colors.transparent,
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 600),
-        onTap: (index) {
-          setState(() {
-            _page = index;
-          });
-        },
-      ),
-    )
-    );
+          child: CurvedNavigationBar(
+            key: _bottomNavigationKey,
+            index: 0,
+            height: 55.0,
+            items: <Widget>[
+              Icon(Icons.notifications_active, size: 30),
+              Icon(Icons.list, size: 30),
+              Icon(Icons.compare_arrows, size: 30),
+              Icon(Icons.call_split, size: 30),
+              Icon(Icons.perm_identity, size: 30),
+            ],
+            color: Colors.white,
+            buttonBackgroundColor: Colors.amber,
+            backgroundColor: Colors.transparent,
+            animationCurve: Curves.easeInOut,
+            animationDuration: Duration(milliseconds: 600),
+            onTap: (index) {
+              setState(() {
+                _page = index;
+              });
+            },
+          ),
+        ));
   }
 
   Widget todaysday(context) {
@@ -207,7 +201,6 @@ class _DashBoardState extends State<DashBoard>
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       productsCard(),
-
                     ],
                   ),
                 )
