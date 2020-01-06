@@ -1,5 +1,4 @@
 import 'package:newflutter/UI/imageSlider.dart';
-
 import 'curved_navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +100,7 @@ class _DashBoardState extends State<DashBoard>
             left: 0,
             right: 0,
             top: 0,
-            bottom: 60,
+            bottom: 49,
             child: CarouselDemo(),
           ),
           Positioned(
@@ -115,13 +114,15 @@ class _DashBoardState extends State<DashBoard>
     );
   }
 
+
   Widget get bottomNavigationBar {
     return Container(
         decoration: BoxDecoration(
+//          borderRadius: BorderRadius.all(Radius.circular(40)),
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(40), topLeft: Radius.circular(40)),
           boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 10),
+            BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 5),
           ],
         ),
         child: ClipRRect(

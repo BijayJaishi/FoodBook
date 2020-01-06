@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newflutter/UI/DashBoard.dart';
+import 'package:newflutter/UI/Following.dart';
 import 'package:newflutter/UI/LoginPage.dart';
 import 'UI/Home.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
           loginpage.id:(context)=>loginpage(),
 
           DashBoard.id : (context)=>DashBoard(),
+          //Following.id : (context)=>Following(),
     },
     );
   }
