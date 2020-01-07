@@ -22,6 +22,7 @@ class CarouselDemoState extends State<CarouselDemo> {
   var followers = "500";
   var _tags = "stories";
   bool isClicked = false;
+  Color textColor = Colors.black;
 
   List imgList = [
     AssetImage("assets/images/burger.jpg"),
@@ -55,10 +56,11 @@ class CarouselDemoState extends State<CarouselDemo> {
                 child: GestureDetector(
                   child: InkWell(
                     child: Text('Stories',
-                        style: TextStyle(fontSize: 15.0, color: Colors.red)),
+                        style: TextStyle(fontSize: 15.0, color: textColor)),
                     onTap: () {
                       setState(() {
                         _tags = "stories";
+                        textColor = Colors.red;
                       });
                     },
                   ),
@@ -69,7 +71,7 @@ class CarouselDemoState extends State<CarouselDemo> {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Text('|',
-                    style: TextStyle(fontSize: 15.0, color: Colors.black)),
+                    style: TextStyle(fontSize: 15.0, color: textColor)),
               ),
 
               Padding(
@@ -79,11 +81,12 @@ class CarouselDemoState extends State<CarouselDemo> {
                       child: Text('Recommended',
                           style: TextStyle(
                             fontSize: 15.0,
-                            color: Colors.black,
+                            color: textColor,
                           )),
                       onTap: () {
                         setState(() {
                           _tags = "recommended";
+                          textColor = Colors.red;
                         });
 //                          getFollowing();
                         //Navigator.pushNamed(context, Following.id);
@@ -105,11 +108,12 @@ class CarouselDemoState extends State<CarouselDemo> {
                       child: Text('Following',
                           style: TextStyle(
                             fontSize: 15.0,
-                            color: Colors.black,
+                            color: textColor,
                           )),
                       onTap: () {
                         setState(() {
                           _tags = "following";
+                          textColor = Colors.red;
                         });
 //                          getFollowing();
                         //Navigator.pushNamed(context, Following.id);
