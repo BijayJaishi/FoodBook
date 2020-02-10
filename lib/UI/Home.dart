@@ -1,174 +1,179 @@
-import "package:flutter/material.dart";
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:newflutter/UI/Profile.dart';
-import 'DashBoard.dart';
+import 'dart:ui';
 
-class Home extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:newflutter/UI/Following.dart';
+import 'package:newflutter/UI/Recommended.dart';
+import 'package:newflutter/UI/Stories.dart';
+
+import 'Profile.dart';
+
+class Home extends StatefulWidget {
+  Home() : super();
+
+  final String title = "Carousel Demo";
+
   @override
-  Widget build(BuildContext context) {
-    return new Stack(children: <Widget>[
-//        Image.asset(
-//          'assets/images/burger.jpg',
-//          height: MediaQuery
-//              .of(context)
-//              .size
-//              .height,
-//          width: MediaQuery
-//              .of(context)
-//              .size
-//              .width,
-//          fit: BoxFit.none,
-//        ),
-//      Scaffold(
-////        appBar: AppBar(
-////          title: Text("Home"),
-////        ),
-//      ),
-      Container(
-        child: Textfield(),
-      ),
-    ]);
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<Home> {
+  var post = "50";
+  var followers = "500";
+  var _tags = "following";
+  bool isClicked = false;
+  Color storiesColor = Colors.black;
+  Color recommendColor = Colors.black;
+  Color followColor = Colors.red;
+
+  List imgList = [
+    AssetImage("assets/images/burger.jpg"),
+    AssetImage("assets/images/newbackground.jpg"),
+    AssetImage("assets/images/burger.jpg"),
+    AssetImage("assets/images/newbackground.jpg"),
+  ];
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
   }
-}
-
-class Textfield extends StatefulWidget {
-  @override
-  _TextfieldState createState() => _TextfieldState();
-}
-
-class _TextfieldState extends State<Textfield> {
-  final TextEditingController textEditingController =
-      new TextEditingController();
-  String result = "";
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/newbackground.jpg"),
-            fit: BoxFit.cover,
-          ),
+    return new Stack(
+      children: <Widget>[
+        Positioned(
+          left: 0,
+          right: 0,
+          top: 0,
+          child: gettabs(),
         ),
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new TextField(
-//              textDirection: TextDirection.rtl,
-              decoration: new InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                  prefixIcon: Icon(Icons.perm_identity),
-                  hintText: "Half Waiter Id",
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red, width: 32.0),
-                      borderRadius: BorderRadius.circular(25.0)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 32.0),
-                      borderRadius: BorderRadius.circular(25.0))),
-              onSubmitted: (String str) {
-                setState(() {
-                  result = str;
-                });
-                textEditingController.text = "";
-              },
-              controller: textEditingController,
-            ),
-//            new Text(result),
-            getButton(),
-          ],
+        Positioned(
+          left: 0,
+          right: 0,
+          top: 47,
+          bottom: 10,
+          child: page(_tags),
         ),
-      ),
+      ],
     );
   }
-}
 
-class getButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    return new Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.end,
+  Widget gettabs() {
+    return Row(
       children: <Widget>[
-        new Container(
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(5.0))),
-        color: Colors.red,
-        child: Text(
-          "Login",
-          style: TextStyle(
-            fontSize: 24.0,
-//    fontFamily: 'CourierPrime',
-//    fontWeight: FontWeight.w700,
+        Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: GestureDetector(
+            child: InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.only(left:8.0),
+                  child: Text('Following',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w500,
+                        color: followColor,
+                      )),
+                ),
+                onTap: () {
+                  setState(() {
+                    _tags = "following";
+                    storiesColor = Colors.black;
+                    recommendColor = Colors.black;
+                    followColor = Colors.red;
+                  });
+                }),
           ),
         ),
-        elevation: 6.0,
-//        onPressed: () => savedata(context),
-      onPressed: (){
-        Fluttertoast.showToast(
-            msg: "Welcome to DashBoard",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIos: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-//        showSnackBar(context);
-        savedata(context);
-      },
-      ),
-      ),
-]);
-
-
-//    return Container(
-//      child: new Align(
-//          alignment: Alignment.topRight,
-//      child: RaisedButton(
-//        shape: RoundedRectangleBorder(
-//            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-//        color: Colors.purple,
-//        child: Text(
-//          "Login",
-//          style: TextStyle(
-//            fontSize: 24.0,
-////    fontFamily: 'CourierPrime',
-////    fontWeight: FontWeight.w700,
-//          ),
-//        ),
-//        elevation: 6.0,
-//        onPressed: () => savedata(context),
-//      ),
-//      ),
-//    );
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child:
+              Text('|', style: TextStyle(fontSize: 15.0, color: Colors.black)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: GestureDetector(
+            child: InkWell(
+              child: Text('Stories',
+                  style: TextStyle(fontSize: 15.0,fontFamily: "Poppins",
+                      fontWeight: FontWeight.w500, color: storiesColor)),
+              onTap: () {
+                setState(() {
+                  _tags = "stories";
+                  storiesColor = Colors.red;
+                  recommendColor = Colors.black;
+                  followColor = Colors.black;
+                });
+              },
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child:
+              Text('|', style: TextStyle(fontSize: 15.0, color: Colors.black)),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: GestureDetector(
+            child: InkWell(
+                child: Text('Recommended',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w500,
+                      color: recommendColor,
+                    )),
+                onTap: () {
+                  setState(() {
+                    _tags = "recommended";
+                    storiesColor = Colors.black;
+                    recommendColor = Colors.red;
+                    followColor = Colors.black;
+                  });
+                }),
+          ),
+        ),
+      ],
+    );
   }
-}
 
-void savedata(BuildContext context) {
+  Widget getImages() {
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 27,
+          child: stories(),
+        ),
+//        Positioned(left: 0, right: 0, bottom: 10, child: gethotelprofile())
+      ],
+    );
+  }
 
-//  Navigator.push(
-//    context,
-//    MaterialPageRoute(builder: (context) => DashBoard()),
-//  );
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => DashBoard()),
-  );
-//  showSnackBar(context);
-}
 
-//SnackBar
-void showSnackBar(BuildContext context) {
-  final scaffold = Scaffold.of(context);
-  var snackBar = SnackBar(
-    content: Text('Welcome to DashBoard'),
-    action:
-        SnackBarAction(label: 'UNDO', onPressed: scaffold.hideCurrentSnackBar),
-  );
-  Scaffold.of(context).showSnackBar(snackBar);
+
+  Widget page(String tag) {
+    if (tag == "stories") {
+      return getImages();
+    } else if (tag == "following") {
+      return getFollowing();
+    } else if (tag == "recommended") {
+      return getRecommend();
+    } else {
+      return getImages();
+    }
+  }
+
+  Widget getFollowing() {
+    return Following();
+  }
+
+  Widget getRecommend() {
+    return Recommended();
+  }
 }

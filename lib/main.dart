@@ -1,28 +1,28 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:newflutter/UI/DashBoard.dart';
-import 'package:newflutter/UI/Following.dart';
 import 'package:newflutter/UI/LoginPage.dart';
-import 'UI/Home.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home:loginpage(),
-        routes: {
-          loginpage.id:(context)=>loginpage(),
-
-          DashBoard.id : (context)=>DashBoard(),
-          //Following.id : (context)=>Following(),
-    },
+      title: 'Foodbook',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Loginpage(),
+      routes: {
+        Loginpage.id: (context) => Loginpage(),
+        DashBoard.id: (context) => DashBoard(),
+      },
     );
   }
+
+
 }
